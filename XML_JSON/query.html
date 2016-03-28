@@ -1,0 +1,235 @@
+<html>
+<head>
+<style>
+    
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+</style>
+<script type="text/javascript">
+	var xmlDoc; 
+    var html_text;
+    var filenotfound = 1;
+    function myFunction(){
+		
+        var url = document.getElementById("inputurl").value;
+        if ( url == "" ){
+            alert("Enter URL in text box");  
+            return;
+        }
+        
+        filenotfound = 1;
+		loadXML(url);
+       
+        
+        //Error Handlings       
+        if (xmlDoc == null){
+            if (filenotfound == 0){
+                alert("File not found");
+            }
+             else{
+                 alert("XML file is empty");       
+             }
+             return;
+        }else if( xmlDoc.getElementsByTagName("parsererror").length > 0){
+            alert("Parse Error in XML File");     
+            return;
+        }
+        else if( xmlDoc.getElementsByTagName("Row").length == 0){
+            alert("No Station Data Found"); 
+            return;
+        }
+        
+            generate(xmlDoc);
+            var myWindow = window.open("", "Assignment4", "height=800,width=1000,scrollbars=1");
+            //myWindow.moveTo(0,0);
+            //myWindow.resizeTo(screen.width, screen.height);
+            myWindow.document.write(html_text);        
+            myWindow.document.close();        
+		
+    }
+    
+    function generate(xmlDoc){
+        ELEMENT_NODE = 1;    // MS parser doesn't define Node.ELEMENT_NODE
+           root=xmlDoc.DocumentElement;
+           html_text="<html><head><title>XML Parse Result</title></head><body>";
+           html_text+="<table border='2' width='100%' cellpadding='0' id = 'table'>";
+           html_text+="<tr>";
+        
+        //Header
+		var header = xmlDoc.getElementsByTagName("Header");
+		var headerData = header[0].getElementsByTagName("Data");        
+        for (var j=0; j < headerData.length; j++)
+		{
+            if (headerData[j].firstChild != null){
+                html_text+="<td style='font-weight: bold; text-align: center'>"+headerData[j].firstChild.data+"</td>";    
+            }else{
+                html_text+="<td style='font-weight: bold; text-align: center'></td>";
+            }
+ 
+		}
+        html_text+="</tr>";
+        
+        //Row Datas
+		var row = xmlDoc.getElementsByTagName("Row");
+        
+                for (var j=0; j < row.length; j++)
+		        {
+                    
+                    html_text+="<tr>";
+			       
+                    //Column1 - CallSign                    
+			        html_text+="<td style='white-space: nowrap'>";
+           	        var nodeValue = row[j].getElementsByTagName("CallSign");
+			        if (nodeValue[0].firstChild != null){
+				        html_text += nodeValue[0].firstChild.data;			
+			        }else{
+				        html_text += "";
+			        }
+			        html_text+="</td>";
+                
+			        //Column 2 - Frequency 
+                    html_text+="<td style='white-space: nowrap'>"	
+			        var nodeValue = row[j].getElementsByTagName("Frequency");  
+                    if (nodeValue[0].firstChild != null){
+                        html_text += nodeValue[0].firstChild.data;
+                    }else{
+				        html_text += "";
+                    }
+			        html_text+="</td>";
+            
+                    //Column 3 - Location
+                    html_text+="<td style='white-space: nowrap'>"			
+			        html_text+="<ul>"
+                    var nodeValue = row[j].getElementsByTagName("Location");
+                    for(var i = 0; i < (nodeValue[0].children.length); i++){   
+                         html_text +="<li>"	
+                         if (nodeValue[0].children[i].firstChild != null){
+                         html_text += nodeValue[0].children[i].firstChild.data;	
+                         }else{
+                         html_text +=""; 
+                         }
+                    }
+                    html_text+="</ul></td>";
+			        
+                    //Column 4 - Format
+                    html_text+="<td style='white-space: nowrap''>";
+                    var nodeValue = row[j].getElementsByTagName("Format");
+                    if (nodeValue[0].firstChild != null){
+				        html_text += nodeValue[0].firstChild.data;			
+			        }else{
+				        html_text += "";
+			        }
+			        html_text+="</td>";
+			        
+                    
+                    //Column 5 - HomePage
+                    html_text+="<td style='white-space: nowrap'>";
+			        var nodeValue = row[j].getElementsByTagName("HomePage");
+                    if (nodeValue[0].firstChild != null){
+				        var link = nodeValue[0].firstChild.data;			
+			        }else{
+				        var link = 	"";
+			        }		
+                    html_text+="<a href ="+link+">"+link+"</a></td>";
+			       	
+			        //Column 6 - Logo
+                    html_text+="<td style='white-space: nowrap'>";
+                    var nodeValue = row[j].getElementsByTagName("Logo");            
+                    if (nodeValue[0].firstChild != null){
+                        var img = nodeValue[0].firstChild.data;
+                        html_text+="<img src ="+img+" width='100%' height='100%'></img>";
+                    }else{
+				        var img = 	"";
+                        html_text+=img;
+                    }			
+			        html_text+="</td>";
+            	
+		      	 
+                html_text+="</tr>";  }
+           html_text+="</tbody>";  html_text+="</table>";
+           html_text+="</body></html>";  
+            
+            
+                
+                
+        
+    }
+    
+
+    //Load XML data
+	function loadXML(url){
+	if (window.XMLHttpRequest){           
+		xmlhttp=new XMLHttpRequest();    
+	}  
+	else{      
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");   
+	}  
+    xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        callfunc(xmlhttp);
+    }else if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
+        filenotfound = 0;
+        xmlDoc = null;
+        return;
+    }
+    };
+	xmlhttp.open("GET",url,false); 
+    xmlhttp.send(); 
+	//xmlDoc=xmlhttp.responseXML;   
+       /* xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==404)
+        {
+            alert("PAGE NOT FOUND");
+        }
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+           try{
+            xmlDoc=xmlhttp.responseXML   ;
+           }
+           catch(error){
+               alert("error " + error);
+           }
+            alert(x);
+            alert(xmlhttp.getResponseHeader("Content-Type"));
+        }
+    }*/
+	//return xmlDoc;  
+    }
+    
+    function callfunc(xml) {
+  var parser;
+  parser = new DOMParser();
+  xmlDoc = parser.parseFromString(xml.responseText,"text/xml");
+  
+}
+</script>
+<title>XML Parser</title>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+Enter URL for Company List XML File
+<br>
+<br>
+<br>
+<input type="text" value="stationslist.xml" id="inputurl"></input>
+<br>
+<br>
+<br>
+<input type="button" id = "querybtn" value="Submit Query" onclick="myFunction()"></input>
+<br>
+<br>
+<br>
+<div id = "tablediv"></div>
+</noscript>
+</body>
+<html>

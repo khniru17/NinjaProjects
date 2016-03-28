@@ -1,0 +1,149 @@
+
+p{
+	text-align: left;
+}
+
+body{
+	font: Arial, Helvetica, sans-serif;
+	background-color: #FCFCEF;
+	background-image: url(images/background.png);
+	background-repeat: repeat-x;
+	position: relative; 
+}
+
+*{
+	margin: 0 auto 0 auto;
+}
+
+#bodypage{
+	position: relative;
+	display: block; 
+	height: auto;
+	width: 940px;	
+}
+
+#headpic{
+	background-image: url(images/main.jpg);
+	background-repeat: no-repeat;
+	width: 900px;
+	height: 350px;	
+}
+.clbtn{
+    margin-left: 6em;
+}
+
+#headpic h1{
+	position: absolute;
+	font-size: 30px;
+	color: #A99410;
+	left: 600px;
+	top: 220px;
+}
+
+
+#headpic h2{
+	position: absolute;
+	font-size: 20px;
+	color: #786B09;
+	left: 600px;
+	top: 250px;
+}
+
+#menus{
+	background-image: url(images/menu.png);
+	background-repeat: repeat-x;
+	width: 940px;
+	height: 70px;
+	float: left;
+}
+
+
+#menus ul {
+	list-style: none;
+	padding: 0px;
+	margin-left:auto;
+	width:900px;
+}
+
+#menus li {
+	list-style: none;
+	padding: 0px;	
+	display: inline; 	
+}
+
+#menus a,#menus a:visited {
+	float: left;	
+	text-align: center;
+	color:#363003;
+	font-weight: bold;
+	padding-top: 15px;
+	width: 150px;
+	height: 50px;
+	display: block;
+	font-size: 18px;
+}
+
+#menus a:hover{
+	color: #B49429;
+}
+
+#notes{
+	width :880px;
+	height: auto;
+	padding-right: 10px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	text-align: left;
+	background-color: #FFF;
+	color:#000000;
+	font-size: 14px;
+}
+
+a,a:visited{
+	color: #E6CB23;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover{
+	color: #B29E5A;
+	
+}
+
+#footer, #footer h3{
+	width: inherit;
+	height: auto;
+	text-align: center;
+	font-size: 12px;
+}
+
+#footer h3 a, #footer h3 a:visited{
+	display: inline;
+	text-align: center;
+	font-size: 12px;
+	text-decoration: none;
+	
+    color: #E6CB23;
+}
+
+#footer h3 a, #footer h3 a:hover{
+	color: #F4ED78;
+}
+
+.chgcolor2{
+	color:#000000;	
+}
+.chgcolor1{
+	color: #F3D86A;
+}
+
+
+#about,#home, #products, #services, #design, #contact, #nl, #website, #scw{
+	position: relative; 
+	font-size: 22px;
+	font-weight: bold;
+}
+
+
+
+
