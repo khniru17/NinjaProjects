@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Name: Niranjana Kandavel Net Id: nxk152730
+ Name: Sidharth Udhayakumar Net Id: sxu140530
+ Date: 11-29-2015
+ Course Number: CS 6301.006
+ Purpose: To create an Android Application that replicates the break out game.
+ To win the game, user has to break the 3 levels of bricks.
+ If the ball hits the wall or if it misses the paddle - the user lose the game.
+ Time is used to calculate the high score.
+ Top 10 high scores are recorded
+ So, the app has 3 Activity:
+ 1. pong1 - This is main Activity used to play the pong game
+ 2. HighScoreActivity - To view the list of top ten scorers
+ 3. RecordScoreActivity - This is used to save the score when user wins, to display Out message
+ classes: contactObject, CustomAdapter, CustomComparator, GlobalVariable, Item, nsMainActivity, nsSubActivity
+ layout xml file:
+ 1. activity_high_core.xml - For high score activity
+ 2. activity_pong1.xml - To display the game and the control area
+ 3. activity_record_score.xml - To record score
+ menu xml file:
+ 1. menu_high_score.xml - Actionbar for high sore activity
+ 2. menu_pong1.xml- Actionbar for pong game activity
+ 3. menu_record_score.xml - - Actionbar for score recording activity
+ -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#ffd668"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1"
+        android:id="@+id/linearLayout">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop"
+            android:id="@+id/stop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="0.13" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="slow"
+            android:id="@+id/textView10"
+            android:layout_weight="0.15" />
+
+        <SeekBar
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekbar"
+            android:max="15"
+            android:progress="5"
+            android:paddingTop="15dp"
+            android:layout_weight="0.19" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="fast"
+            android:id="@+id/textView11"
+            android:layout_weight="0.17" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="00:00"
+            android:id="@+id/timer"
+            android:typeface="serif"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/sens"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<!--
+ Name: Niranjana Kandavel Net Id: nxk152730
+ Name: Sidharth Udhayakumar Net Id: sxu140530
+ Date: 11-29-2015
+ Course Number: CS 6301.006
+ Purpose: To create an Android Application that replicates the break out game.
+ To win the game, user has to break the 3 levels of bricks.
+ If the ball hits the wall or if it misses the paddle - the user lose the game.
+ Time is used to calculate the high score.
+ Top 10 high scores are recorded
+ So, the app has 3 Activity:
+ 1. pong1 - This is main Activity used to play the pong game
+ 2. HighScoreActivity - To view the list of top ten scorers
+ 3. RecordScoreActivity - This is used to save the score when user wins, to display Out message
+ classes: contactObject, CustomAdapter, CustomComparator, GlobalVariable, Item, nsMainActivity, nsSubActivity
+ layout xml file:
+ 1. activity_high_core.xml - For high score activity
+ 2. activity_pong1.xml - To display the game and the control area
+ 3. activity_record_score.xml - To record score
+ menu xml file:
+ 1. menu_high_score.xml - Actionbar for high sore activity
+ 2. menu_pong1.xml- Actionbar for pong game activity
+ 3. menu_record_score.xml - - Actionbar for score recording activity
+ -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.ns.pongattempt1.RecordScoreActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name"
+        android:id="@+id/ssnamelbl"
+        android:layout_marginTop="111dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Score"
+        android:id="@+id/ssscorelbl"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/name"
+        android:layout_toLeftOf="@+id/savebtn"
+        android:layout_toStartOf="@+id/savebtn" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/name"
+        android:layout_alignTop="@+id/ssnamelbl"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/savebtn"
+        android:layout_alignStart="@+id/savebtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/scorenew"
+        android:layout_alignTop="@+id/ssscorelbl"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Score"
+        android:id="@+id/savebtn"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:layout_below="@+id/scorenew"
+        android:layout_toRightOf="@+id/ssnamelbl"
+        android:layout_toEndOf="@+id/ssnamelbl" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/heading"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/ssscorelbl"
+        android:layout_alignStart="@+id/ssscorelbl"
+        android:layout_marginTop="28dp" />
+</RelativeLayout>
